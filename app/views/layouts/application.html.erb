@@ -17,18 +17,32 @@
 
 <body>
 
+    <style>
+        body {
+            background-color: #f5f5f5;
+            /* background-image: url('assets/bg1.jpg');  */
+            background-size: cover;
+        }
+    </style>
+
     <%= render  "partials/navbar" %>
 
     <br><br>
 
-    <main>
-        <%= yield %>
-    </main>
+    <% flash.each do |name, msg| %>
+
+    <p>
+        <%= msg%>
+    </p>
+
+    <% end %>
+
+    <%= yield %>
 
     <br><br>
 
     <!-- Footer -->
-    <footer id="main-footer" class="py-4 bg-primary text-white text-center fixed-bottom">
+    <footer id="main-footer" class="py-4 bg-primary text-white text-center bottom">
         Copyright &copy;
         <span class="year"></span> BT Real Estate
     </footer>
