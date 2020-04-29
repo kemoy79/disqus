@@ -46,9 +46,7 @@
 
     <div class="col-sm-6">
       <div class="card">
-        <button type="button" class="btn btn-p" data-toggle="modal" data-target="#exampleModal">
-                Whats On Your Mind...
-        </button>
+        <%= link_to "Whats on your mind?", :new_post, class:"btn btn-block" %>
       </div> <br>
       <% @posts.each do |post| %>
 

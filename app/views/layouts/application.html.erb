@@ -26,15 +26,11 @@
     </style>
 
     <%= render  "partials/navbar" %>
-
     <br><br>
 
+    <%# Flash messages %>
     <% flash.each do |name, msg| %>
-
-    <p>
-        <%= msg%>
-    </p>
-
+      <p> <%= msg%> </p>
     <% end %>
 
     <%= yield %>

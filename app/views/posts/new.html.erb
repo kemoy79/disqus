@@ -1,5 +1,65 @@
 <div class="container">
 
-  <h2>POsts</h2>
+  <div class="card w-75 h-75 mx-auto">
+
+
+    <% if @post.errors.any?%>
+    <h3>The follwoing prevented submission!</h3>
+    <% @post.errors.full_messages.each do |msg| %>
+    <ul>
+      <li><%= msg %></li>
+    </ul>
+    <% end %>
+    <% end %>
+    <!-- Default form contact -->
+
+
+    <%= form_with(model: @post, class: "border border-light p-5", local: true ) do |form| %>
+
+    <p class="h4 mb-4">
+      <h3>New Post</h3>
+    </p>
+
+
+
+    <!-- Title -->
+    <%= form.text_field :title, class: "form-control mb-4", placeholder: "Title"   %>
+    <%# <input type="text" id="defaultContactFormName" class="form-control mb-4" placeholder="Title"> %>
+
+    <%= form.hidden_field :user_id, value: current_user.id %>
+
+    <!-- Subject -->
+    <label>Category</label>
+    <%= form.select(:category_id) do %>
+    <% Category.all.each do |category| %>
+    <%= content_tag(:option, category.name, value:category.id ) %>
+    <% end %>
+    <% end %>
+
+
+    <%# <select class="browser-default custom-select mb-4">
+        <option value="" disabled selected>Choose option</option>
+        <% @categories.each do |category|       -- [[<%= category.name ], [<%= category.id]]
+        <option value="<%= category.id "><%= category.name</option>
+        <% end 
+      </select> %>
+
+    <!-- Message -->
+    <div class="form-group">
+
+      <%= form.text_area :body, class: "form-control rounded-0", rows: "3", placeholder: "Do your thing..."  %>
+      <%# <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3"
+          placeholder="Do your thing..."></textarea> %>
+    </div>
+
+    <!-- Send button -->
+    <%= form.submit "Create", class: "btn btn-info btn-block", disable_with: 'Createing...' %>
+    <%# <button class="btn btn-info btn-block" type="submit">Send</button> %>
+
+    <% end %>
+    <%# </form> %>
+    <!-- Default form contact -->
+
+  </div>
 
 </div>

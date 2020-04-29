@@ -7,7 +7,7 @@ class PostsController < ApplicationController
 
 
   def new
-    
+    @post = Post.new
   end
 
   def show
@@ -17,10 +17,11 @@ class PostsController < ApplicationController
 
 
   def create
-    @object = Object.new(params[:object])
-    if @object.save
-      flash[:success] = "Object successfully created"
-      redirect_to @object
+    
+    @post = Post.new(user_params)
+    if @post.save
+      flash[:success] = "Post successfully created"
+      redirect_to :posts
     else
       flash[:error] = "Something went wrong"
       render 'new'
@@ -34,7 +35,7 @@ class PostsController < ApplicationController
   def update
     @object = Object.find(params[:id])
       if @object.update_attributes(params[:object])
-        flash[:success] = "Object was successfully updated"
+        flash[:success] = "Post was successfully updated"
         redirect_to @object
       else
         flash[:error] = "Something went wrong"
@@ -46,7 +47,7 @@ class PostsController < ApplicationController
   def def destroy
     @object = Object.find(params[:id])
     if @object.destroy
-      flash[:success] = 'Object was successfully deleted.'
+      flash[:success] = 'Post was successfully deleted.'
       redirect_to objects_url
     else
       flash[:error] = 'Something went wrong'
@@ -56,6 +57,10 @@ class PostsController < ApplicationController
   
   
   
-  
+  private
+
+  def user_params
+    params.require(:post).permit(:title, :body, :category_id, :user_id)
+  end
 
 end
