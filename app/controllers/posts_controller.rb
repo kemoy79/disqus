@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
 
   def index
-    @posts = Post.all
+    @posts = Post.order(id: :desc)
 
   end
 
@@ -11,13 +11,13 @@ class PostsController < ApplicationController
   end
 
   def show
+    set_post
    
   end
   
 
 
-  def create
-    
+  def create 
     @post = Post.new(user_params)
     if @post.save
       flash[:success] = "Post successfully created"
@@ -58,6 +58,10 @@ class PostsController < ApplicationController
   
   
   private
+
+  def set_post
+    @post = Post.find(params[:id])
+  end
 
   def user_params
     params.require(:post).permit(:title, :body, :category_id, :user_id)

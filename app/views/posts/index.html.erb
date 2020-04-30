@@ -8,6 +8,7 @@
       <div class="card">
 
         <!-- Card image -->
+        <% if logged_in? %>
         <div class="view overlay">
           <img class="card-img-top" src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg"
             alt="Card image cap">
@@ -15,17 +16,24 @@
             <div class="mask rgba-white-slight"></div>
           </a>
         </div>
-
+        <% end %>
         <!-- Card content -->
         <div class="card-body">
 
           <!-- Title -->
           <h4 class="card-title">Card title</h4>
           <!-- Text -->
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
+          <div class="card-text">
+
+          <% if logged_in? %>
+            <p><%= current_user.first_name.capitalize %> </p>
+          <% else %>
+            <p>YUh nuh log in eediat!</p>
+          <% end %>
+
+          </div>
           <!-- Button -->
-          <a href="#" class="btn btn-primary btn-sm">Button</a>
+          <a href="#" class="btn btn-primary btn-sm">Edit Profile</a>
 
         </div>
 
@@ -67,7 +75,8 @@
               laborum.
             </p>
           </article>
-          <a class="card-link">Card link</a>
+          <%= link_to "View", post, class: "card-link" %>
+          <%# <a class="card-link">View</a> %>
           <a class="card-link">Another link</a>
         </div>
       </div> <br>
