@@ -5,11 +5,14 @@ Rails.application.routes.draw do
 
   root 'pages#index'
 
-  resources :users
+  get 'about', to: 'pages#about'
+
+  resources :users, only: [:index, :new, :create]
 
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   get 'logout', to: 'sessions#destroy'
+
 
   resources :posts
 end

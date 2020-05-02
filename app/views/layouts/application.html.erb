@@ -2,46 +2,66 @@
 <html>
 
 <head>
-    <title>Disqus</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+  <title>Disqus</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%# <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%# <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%# <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%# <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-    <%= stylesheet_link_tag "bootstrap", "mdb" %>
-    <%= javascript_include_tag "jquery", "bootstrap" %>
-    <%= javascript_include_tag "mdb", "popper.min" %>
+  <%= stylesheet_link_tag "bootstrap", "mdb" %>
+  <%= javascript_include_tag "jquery", "bootstrap" %>
+  <%= javascript_include_tag "mdb", "popper.min" %>
 
 </head>
 
 <body>
 
-    <style>
-        body {
-            background-color: #f5f5f5;
-            /* background-image: url('assets/bg1.jpg');  */
-            background-size: cover;
-        }
-    </style>
+  <style>
+    body {
+      background-color: #f5f5f5;
+      /* background-image: url('assets/index.jpg'); */
+      background-size: cover;
+    }
+  </style>
 
-    <%= render  "partials/navbar" %>
-    <br><br>
+  <%= render  "partials/navbar" %>
+  <br>
 
-    <%# Flash messages %>
-    <% flash.each do |name, msg| %>
-      <p> <%= msg%> </p>
-    <% end %>
+  <%# Flash messages %>
+  <% flash.each do |name, msg| %>
+  <div class="alert alert-success" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+    <p class="alert"> <%= msg%>
+  </div>
 
-    <%= yield %>
+  <% end %>
 
-    <br><br>
+  <%= yield %>
 
-    <!-- Footer -->
-    <footer id="main-footer" class="py-4 bg-primary text-white text-center bottom">
-        Copyright &copy;
-        <span class="year"></span> BT Real Estate
-    </footer>
+  <br><br>
+
+  <!-- Footer -->
+  <!-- Footer -->
+  <footer class="page-footer font-small bottom">
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2020 Copyright:
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <!-- Footer -->
+
+
+   <script>
+     $("document").ready(function () {
+
+          setTimeout(function () {
+              $(".alert").remove();
+          }, 2000); // 2 secs
+      });
+  </script>
 
 </body>
 

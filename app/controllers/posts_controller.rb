@@ -29,14 +29,14 @@ class PostsController < ApplicationController
   end
 
   def edit
-   
+    set_post
   end
 
   def update
-    @object = Object.find(params[:id])
-      if @object.update_attributes(params[:object])
+    @post = set_post
+      if @post.update_attributes(user_params)
         flash[:success] = "Post was successfully updated"
-        redirect_to @object
+        redirect_to  :posts
       else
         flash[:error] = "Something went wrong"
         render 'edit'

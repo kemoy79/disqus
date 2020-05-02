@@ -30,7 +30,7 @@
 
     <!-- Subject -->
     <label>Category</label>
-    <%= form.select(:category_id) do %>
+    <%= form.select(:category_id, [],{}, {:class => "browser-default custom-select"}) do %>
     <% Category.all.each do |category| %>
     <%= content_tag(:option, category.name, value:category.id ) %>
     <% end %>
@@ -44,6 +44,7 @@
         <% end 
       </select> %>
 
+    <br><br>
     <!-- Message -->
     <div class="form-group">
 
