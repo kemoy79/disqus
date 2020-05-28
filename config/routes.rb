@@ -2,10 +2,17 @@
 
 Rails.application.routes.draw do
   resources :profiles
+  
   devise_for :users
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  devise_scope :user do
+    authenticated :user do
+      root 'posts#index', as: :authenticated_root
+    end
 
-  root 'pages#index'
+    unauthenticated do
+      root 'pages#index', as: :root
+    end
+  end
 
   get 'about', to: 'pages#about'
 
