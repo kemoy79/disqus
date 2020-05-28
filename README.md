@@ -1,11 +1,14 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Disqus is a simple project to allow users to post short articles about a topic and have others view it. As time progresses, upgrades will be made in terms of functionality.
 
-Things you may want to cover:
+This project was developed using the following:
 
-* Ruby version
+* Ruby 2.6
+
+* Rails 6
+
+* PostgreSQL 10
 
 * System dependencies
 
