@@ -35,17 +35,7 @@
   <%= render  "partials/navbar" %>
   <br>
 
-  <%# Flash messages %>
-  <% flash.each do |name, msg| %>
-  <div class="alert alert-success" role="alert">
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-    <p class="alert"> <%= msg%>
-  </div>
-
-  <% end %>
-
+  <%= render "layouts/messages" %>
   <%= yield %>
 
   <br><br>

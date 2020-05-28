@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
 
   def index
+    @user = current_user if user_signed_in?
     @posts = Post.order(id: :desc)
 
   end
@@ -19,11 +20,12 @@ class PostsController < ApplicationController
 
   def create 
     @post = Post.new(user_params)
+    @post.user_id = current_user.id
     if @post.save
-      flash[:success] = "Post successfully created"
+      flash[:notice] = "Post successfully created"
       redirect_to :posts
     else
-      flash[:error] = "Something went wrong"
+      flash[:alert] = "Something went wrong"
       render 'new'
     end
   end
@@ -35,22 +37,22 @@ class PostsController < ApplicationController
   def update
     @post = set_post
       if @post.update_attributes(user_params)
-        flash[:success] = "Post was successfully updated"
+        flash[:notice] = "Post was successfully updated"
         redirect_to  :posts
       else
-        flash[:error] = "Something went wrong"
+        flash[:alert] = "Something went wrong"
         render 'edit'
       end
   end
   
 
-  def def destroy
+  def destroy
     @object = Object.find(params[:id])
     if @object.destroy
-      flash[:success] = 'Post was successfully deleted.'
+      flash[:notice] = 'Post was successfully deleted.'
       redirect_to objects_url
     else
-      flash[:error] = 'Something went wrong'
+      flash[:alert] = 'Something went wrong'
       redirect_to objects_url
     end
   end
@@ -64,7 +66,7 @@ class PostsController < ApplicationController
   end
 
   def user_params
-    params.require(:post).permit(:title, :body, :category_id, :user_id)
+    params.require(:post).permit(:title, :body, :category_id)
   end
 
 end

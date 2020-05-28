@@ -26,8 +26,6 @@
     <%= form.text_field :title, class: "form-control mb-4", placeholder: "Title"   %>
     <%# <input type="text" id="defaultContactFormName" class="form-control mb-4" placeholder="Title"> %>
 
-    <%= form.hidden_field :user_id, value: current_user.id %>
-
     <!-- Subject -->
     <label>Category</label>
     <%= form.select(:category_id, [],{}, {:class => "browser-default custom-select"}) do %>

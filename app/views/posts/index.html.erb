@@ -8,7 +8,7 @@
       <div class="card">
 
         <!-- Card image -->
-        <% if logged_in? %>
+        <% if user_signed_in? %>
         <div class="view overlay">
           <img class="card-img-top" src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg"
             alt="Card image cap">
@@ -25,8 +25,8 @@
           <!-- Text -->
           <div class="card-text">
 
-          <% if logged_in? %>
-            <p><%= current_user.first_name.capitalize %> </p>
+          <% if user_signed_in? %>
+            <p>User Name </p>
           <% else %>
             <p>YUh nuh log in eediat!</p>
           <% end %>
@@ -54,8 +54,8 @@
 
     <div class="col-sm-6">
       <div class="card">
-       <% if logged_in? %>
-        <%= link_to "Whats on your mind?", :new_post, class:"btn btn-block" %>
+       <% if user_signed_in? %>
+        <%= link_to "Say what's on your mind...", :new_post, class:"btn btn-block" %>
        <%end %>
       </div> <br>
       <% @posts.each do |post| %>
@@ -64,7 +64,7 @@
         <div class="card-body">
           <div class="card-title text-left"><span>
               <h5 class="d-inline"> <%= post.title%> </h5> </span> <span class="ml-5">x</span> </div>
-              <p>by: <%= post.user.first_name.capitalize %></p>
+              <p>by: </p>
            
           <article class="card-text">
             <p><%= post.body%> <br>
@@ -80,7 +80,9 @@
           </article>
           <%= link_to "View", post, class: "card-link" %>
           <%# <a class="card-link">View</a> %>
+          <% if user_signed_in? && @user.id == post.user_id%>
           <%= link_to "Edit", edit_post_path(post), class: "card-link" %>
+          <% end %>
         </div>
       </div> <br>
 
