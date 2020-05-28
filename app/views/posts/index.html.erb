@@ -1,0 +1,126 @@
+<div class="container">
+
+  <div class="row">
+
+    <div class="col-sm">
+
+      <!-- Card -->
+      <div class="card">
+
+        <!-- Card image -->
+        <% if logged_in? %>
+        <div class="view overlay">
+          <img class="card-img-top" src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg"
+            alt="Card image cap">
+          <a href="#!">
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
+        <% end %>
+        <!-- Card content -->
+        <div class="card-body">
+
+          <!-- Title -->
+          <h4 class="card-title">Card title</h4>
+          <!-- Text -->
+          <div class="card-text">
+
+          <% if logged_in? %>
+            <p><%= current_user.first_name.capitalize %> </p>
+          <% else %>
+            <p>YUh nuh log in eediat!</p>
+          <% end %>
+
+          </div>
+          <!-- Button -->
+          <a href="#" class="btn btn-primary btn-sm">Edit Profile</a>
+
+        </div>
+
+      </div>
+      <!-- Card -->
+
+
+      <%# new section %>
+      <br>
+      <div class="card">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Cras justo odio</li>
+          <li class="list-group-item">Dapibus ac facilisis in</li>
+          <li class="list-group-item">Vestibulum at eros</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-sm-6">
+      <div class="card">
+       <% if logged_in? %>
+        <%= link_to "Whats on your mind?", :new_post, class:"btn btn-block" %>
+       <%end %>
+      </div> <br>
+      <% @posts.each do |post| %>
+
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title text-left"><span>
+              <h5 class="d-inline"> <%= post.title%> </h5> </span> <span class="ml-5">x</span> </div>
+              <p>by: <%= post.user.first_name.capitalize %></p>
+           
+          <article class="card-text">
+            <p><%= post.body%> <br>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore
+              magna aliqua.
+              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+              consequat.
+              Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+              laborum.
+            </p>
+          </article>
+          <%= link_to "View", post, class: "card-link" %>
+          <%# <a class="card-link">View</a> %>
+          <%= link_to "Edit", edit_post_path(post), class: "card-link" %>
+        </div>
+      </div> <br>
+
+      <% end %>
+    </div>
+
+    <div class="col-sm">
+      One of three columns
+    </div>
+
+<%# end of row %>
+  </div>
+
+    <!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<%# end of container %>
+</div>
+

@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       if user && user.authenticate(params[:session][:password])
         session[:user_id] = user.id
         flash[:notice] = "Logged in succesfully"
-        redirect_to :users
+        redirect_to :posts
       else
         flash.now[:alert] = "Invalid credentials"
         render 'new'
