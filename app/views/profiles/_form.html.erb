@@ -1,0 +1,28 @@
+<%= form_with(model: profile, local: true) do |form| %>
+  <% if profile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
+
+      <ul>
+        <% profile.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <div class="custom-file">
+     <%= form.file_field :profile_pic, class: "custom-file-input", id: "inputGroupFile01" %>
+     <label class="custom-file-label" for="inputGroupFile01">Profile Picture</label>
+    </div> <br><br>
+
+    <%= form.text_field :first_name, class: "form-control mb-4", placeholder: "First Name" %>
+
+    <%= form.text_field :last_name, class: "form-control mb-4", placeholder: "Last Name" %>
+
+    <%= form.date_field :dob, class: "form-control mb-4", placeholder: "DOB" %>
+
+    <%= form.text_field :gender, class: "form-control mb-4", placeholder: "Gender" %>
+
+    <%= form.submit class: "btn btn-info btn-block my-4" %>
+<% end %>

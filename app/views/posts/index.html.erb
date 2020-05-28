@@ -10,8 +10,13 @@
         <!-- Card image -->
         <% if user_signed_in? %>
         <div class="view overlay">
-          <img class="card-img-top" src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg"
+
+        <% if @user.profile.profile_pic.attached?%>
+          <%= image_tag @user.profile.profile_pic, size: "200x200", class:"card-img-top" %>
+        <% else %>
+           <img class="card-img-top" src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg"
             alt="Card image cap">
+        <% end%>
           <a href="#!">
             <div class="mask rgba-white-slight"></div>
           </a>
@@ -21,19 +26,23 @@
         <div class="card-body">
 
           <!-- Title -->
-          <h4 class="card-title">Card title</h4>
+          <h4 class="card-title">Profile</h4>
           <!-- Text -->
           <div class="card-text">
 
           <% if user_signed_in? %>
-            <p>User Name </p>
+            <p><%= @user.profile.full_name %> </p>
           <% else %>
-            <p>YUh nuh log in eediat!</p>
+            <p>You aren't signed in!!</p>
           <% end %>
 
           </div>
           <!-- Button -->
-          <a href="#" class="btn btn-primary btn-sm">Edit Profile</a>
+          <% if user_signed_in?%>
+            <%= link_to "Edit Profile", edit_profile_path(id: @user.id), class: "btn btn-primary btn-sm"%>
+          <% else %>
+            <%= link_to "Sign In", new_user_session_path, class: "btn btn-primary btn-sm" %>
+          <% end %>
 
         </div>
 

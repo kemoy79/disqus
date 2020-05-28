@@ -1,9 +1,9 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_user
 
   def index
-    @user = current_user if user_signed_in?
     @posts = Post.order(id: :desc)
-
   end
 
 
@@ -63,6 +63,10 @@ class PostsController < ApplicationController
 
   def set_post
     @post = Post.find(params[:id])
+  end
+
+  def set_user
+    @user = current_user if user_signed_in?
   end
 
   def user_params
