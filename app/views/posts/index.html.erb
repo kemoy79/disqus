@@ -52,7 +52,12 @@
           <div class="card-text">
 
             <% if user_signed_in? %>
-            <p><%= @user.profile.full_name %> </p>
+            <p><%= @user.email%> </p>
+            <%
+=begin%>
+ <p><%= @user.profile.full_name %> </p> 
+<%
+=end%>
             <% else %>
             <p>You aren't signed in!!</p>
             <% end %>
@@ -94,8 +99,14 @@
       <div class="card">
         <div class="card-body">
           <div class="card-title text-left"><span>
-              <h6><small><%= post.user.profile.full_name %> &#8226; <%= post.created_at.strftime("on %d/%m/%Y") %>
+          <h6><small><%= post.user.email %> &#8226; <%= post.created_at.strftime("on %d/%m/%Y") %>
                 </small></h6>
+              <%
+=begin%>
+ <h6><small><%= post.user.profile.full_name %> &#8226; <%= post.created_at.strftime("on %d/%m/%Y") %>
+                </small></h6> 
+<%
+=end%>
               <h5 class="d-inline"> <%= post.title%></h5>
           </div>
           <article class="card-text">
