@@ -22,6 +22,10 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 #gem 'bcrypt', '~> 3.1.7'
 
+gem "actionpack", ">= 6.0.3.1"
+gem "activesupport", ">= 6.0.3.1"
+gem "activestorage", ">= 6.0.3.1"
+
 gem 'devise'
 
 # Use Active Storage variant
