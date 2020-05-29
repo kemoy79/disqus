@@ -1,6 +1,10 @@
-<h2>Sign up</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), class: "text-center border border-light p-5") do |f| %>
+<div class="row d-flex justify-content-center">
+<div class="col-6">
+<h2 class="card-header info-color white-text text-center py-4">Sign up</h2>
+<div class="card p-3">
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), class: "text-center border border-light p-5") do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
  <%= f.email_field :email, autofocus: true, class: "form-control mb-4", placeholder: "Email", autocomplete: "email" %>
@@ -20,3 +24,6 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+</div>
+</div>
+</div>

@@ -1,8 +1,8 @@
 <div class="container">
 
-  <div class="card w-75 h-75 mx-auto">
+  <div class="card w-75 mx-auto">
 
-
+    <h3 class="card-header bg-primary text-white text-center">New Post</h3>
     <% if @post.errors.any?%>
     <h3>The follwoing prevented submission!</h3>
     <% @post.errors.full_messages.each do |msg| %>
@@ -16,17 +16,11 @@
 
     <%= form_with(model: @post, class: "border border-light p-5", local: true ) do |form| %>
 
-    <p class="h4 mb-4">
-      <h3>New Post</h3>
-    </p>
-
-
 
     <!-- Title -->
     <%= form.text_field :title, class: "form-control mb-4", placeholder: "Title"   %>
-    <%# <input type="text" id="defaultContactFormName" class="form-control mb-4" placeholder="Title"> %>
 
-    <!-- Subject -->
+    <!-- Category -->
     <label>Category</label>
     <%= form.select(:category_id, [],{}, {:class => "browser-default custom-select"}) do %>
     <% Category.all.each do |category| %>
@@ -34,29 +28,18 @@
     <% end %>
     <% end %>
 
-
-    <%# <select class="browser-default custom-select mb-4">
-        <option value="" disabled selected>Choose option</option>
-        <% @categories.each do |category|       -- [[<%= category.name ], [<%= category.id]]
-        <option value="<%= category.id "><%= category.name</option>
-        <% end 
-      </select> %>
-
     <br><br>
-    <!-- Message -->
+    <!-- Body -->
     <div class="form-group">
 
-      <%= form.text_area :body, class: "form-control rounded-0", rows: "3", placeholder: "Do your thing..."  %>
-      <%# <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3"
-          placeholder="Do your thing..."></textarea> %>
+      <%= form.text_area :body, class: "form-control rounded-0", rows: "3", placeholder: "Say something..."  %>
+     
     </div>
 
     <!-- Send button -->
-    <%= form.submit "Create", class: "btn btn-info btn-block", disable_with: 'Createing...' %>
-    <%# <button class="btn btn-info btn-block" type="submit">Send</button> %>
+    <%= form.submit "Create", class: "btn btn-primary btn-block", disable_with: 'Createing...' %>
 
     <% end %>
-    <%# </form> %>
     <!-- Default form contact -->
 
   </div>

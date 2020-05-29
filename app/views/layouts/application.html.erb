@@ -11,7 +11,7 @@
 
   <%# <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%# <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-
+  <%= stylesheet_link_tag "fontawesome/5.4.2/css/all.min" %>
   <%= stylesheet_link_tag "bootstrap", "mdb" %>
   <%= javascript_include_tag "jquery", "bootstrap" %>
   <%= javascript_include_tag "mdb", "popper.min" %>
@@ -31,6 +31,13 @@
         color: #f2f2f2;
         text-decoration:none;
         }
+
+        .foot {
+          position:absolute;
+          bottom:0;
+          width:100%;
+          height:60px;   /* Height of the footer */
+          }
     </style>
 
 </head>
@@ -47,17 +54,12 @@
   
 
   <br><br>
-
-  <!-- Footer -->
-  <!-- Footer -->
-  <footer class="page-footer font-small bottom">
+     <footer class="page-footer font-small fixed-bottom" id="foot">
     <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">© 2020 Copyright:
+    <div class="footer-copyright text-center py-3">© 2020 Copyright: Disqus
     </div>
     <!-- Copyright -->
   </footer>
-  <!-- Footer -->
-
 
    <script>
      $("document").ready(function () {

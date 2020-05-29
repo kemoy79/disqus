@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :set_user
 
   def index
-    @posts = Post.order(id: :desc)
+    @postss = Post.order(id: :desc)
   end
 
 
@@ -47,13 +47,13 @@ class PostsController < ApplicationController
   
 
   def destroy
-    @object = Object.find(params[:id])
+    @object = Post.find(params[:id])
     if @object.destroy
       flash[:notice] = 'Post was successfully deleted.'
-      redirect_to objects_url
+      redirect_to posts_url
     else
       flash[:alert] = 'Something went wrong'
-      redirect_to objects_url
+      redirect_to 'index'
     end
   end
   

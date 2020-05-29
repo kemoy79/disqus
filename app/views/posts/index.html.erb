@@ -1,3 +1,18 @@
+<style>
+  .btn-grp {
+    display: inline-block;
+  }
+
+  .post{
+    color: black; 
+  }
+
+  .post:hover{
+    color: blue;
+    text-decoration: underline;
+  }
+</style>
+
 <div class="container">
 
   <div class="row">
@@ -11,12 +26,12 @@
         <% if user_signed_in? %>
         <div class="view overlay">
 
-        <% if @user.profile.profile_pic.attached?%>
+          <% if @user.profile.profile_pic.attached?%>
           <%= image_tag @user.profile.profile_pic, size: "200x200", class:"card-img-top" %>
-        <% else %>
-           <img class="card-img-top" src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg"
+          <% else %>
+          <img class="card-img-top" src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg"
             alt="Card image cap">
-        <% end%>
+          <% end%>
           <a href="#!">
             <div class="mask rgba-white-slight"></div>
           </a>
@@ -30,18 +45,18 @@
           <!-- Text -->
           <div class="card-text">
 
-          <% if user_signed_in? %>
+            <% if user_signed_in? %>
             <p><%= @user.profile.full_name %> </p>
-          <% else %>
+            <% else %>
             <p>You aren't signed in!!</p>
-          <% end %>
+            <% end %>
 
           </div>
           <!-- Button -->
           <% if user_signed_in?%>
-            <%= link_to "Edit Profile", edit_profile_path(id: @user.id), class: "btn btn-primary btn-sm"%>
+          <%= link_to "Edit Profile", edit_profile_path(id: @user.id), class: "btn btn-primary btn-sm"%>
           <% else %>
-            <%= link_to "Sign In", new_user_session_path, class: "btn btn-primary btn-sm" %>
+          <%= link_to "Sign In", new_user_session_path, class: "btn btn-primary btn-sm" %>
           <% end %>
 
         </div>
@@ -62,67 +77,58 @@
     </div>
 
     <div class="col-sm-6">
-      <div class="card">
-       <% if user_signed_in? %>
-        <%= link_to "Say what's on your mind...", :new_post, class:"btn btn-block" %>
-       <%end %>
-      </div> <br>
-      <% @posts.each do |post| %>
+    <a href="posts/new" class="post">
+      <div class="card w-100 h-25 p-3">
+       <h3 class="text-center"> <i class="far fa-edit"></i> Make a post</h3>
+      </div>
+    </a><br>
+      <% if @posts %>
+        <% @posts.each do |post| %>
 
-      <div class="card">
+        <div class="card">
+          <div class="card-body">
+            <div class="card-title text-left"><span>
+                <h6><small><%= post.user.profile.full_name %> &#8226; <%= post.created_at.strftime("on %d/%m/%Y") %>
+                  </small></h6>
+                <h5 class="d-inline"> <%= post.title%></h5>
+            </div>
+            <article class="card-text">
+              <p><%= post.body.first(50)%>... </p>
+            </article>
+            <div class="row d-flex justify-content-center">
+              <%= link_to "View More", post, class: "btn btn-sm btn-outline-primary btn-grp" %>
+              <% if user_signed_in? && @user.id == post.user_id%>
+              <%= link_to "Edit", edit_post_path(post), class: "btn btn-sm btn-outline-secondary btn-grp" %>
+              <%= button_to "Delete", post_path(post), data: { turbolinks: false, confirm: "Are you sure?" }, method: :delete,  class: "btn btn-sm btn-outline-danger btn-grp" %>
+              <% end %>
+            </div>
+          </div>
+        </div> <br>
+
+        <% end %>
+      </div>
+     <% else %>
+      <div class="card text-center">
         <div class="card-body">
-          <div class="card-title text-left"><span>
-              <h5 class="d-inline"> <%= post.title%> </h5> </span> <span class="ml-5">x</span> </div>
-              <p>by: </p>
-           
-          <article class="card-text">
-            <p><%= post.body.first(5)%>... </p>
-          </article>
-          <%= link_to "View More", post, class: "card-link" %>
-          <%# <a class="card-link">View</a> %>
-          <% if user_signed_in? && @user.id == post.user_id%>
-          <%= link_to "Edit", edit_post_path(post), class: "card-link" %>
-          <% end %>
+        <div class="card-text">
+          <h3>No Articles Available <i class="far fa-sad-tear"></i></h3>
+          <h5>Be the first to make a post</h5>
         </div>
-      </div> <br>
-
-      <% end %>
+       </div>
+      </div>
+     <% end %>
     </div>
 
     <div class="col-sm">
-      One of three columns
-    </div>
-
-<%# end of row %>
-  </div>
-
-    <!-- Button trigger modal -->
-
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+      <div class="card">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Information</li>
+          <li class="list-group-item">Entertainment</li>
+          <li class="list-group-item">Personal</li>
+        </ul>
       </div>
     </div>
+
+    <%# end of row %>
   </div>
-</div>
-
-
-
-<%# end of container %>
-</div>
-
+</div> <br>

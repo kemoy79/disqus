@@ -26,6 +26,8 @@ gem 'jbuilder', '~> 2.7'
 # gem "activesupport", ">= 6.0.3.1"
 # gem "activestorage", ">= 6.0.3.1"
 
+gem "font-awesome-rails"
+
 gem 'devise'
 
 # Use Active Storage variant

@@ -1,11 +1,15 @@
 <div class="container">
-
-  <div class="card w-75 h-75 p-3 mx-auto">
-
+  <div class="card p-3 mx-auto">
+    <%= link_to "", posts_path, class: "fas fa-arrow-left", style: "font-size:30px;color: green;"%>
     <h2 class="card-title text-center"><%= @post.title %></h2>
 
     <p> <%= @post.body %> </p>
 
+    <div class="row d-flex justify-content-center">
+      <% if user_signed_in? && @user.id == @post.user_id%>
+      <%= link_to "Edit", edit_post_path(@post), class: "btn btn-sm btn-outline-secondary btn-grp" %>
+      <%= button_to "Delete", post_path(@post), data: { turbolinks: false, confirm: "Are you sure?" }, method: :delete,  class: "btn btn-sm btn-outline-danger btn-grp" %>
+      <% end %>
+    </div>
   </div>
-
 </div>

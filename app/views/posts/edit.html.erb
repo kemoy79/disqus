@@ -1,5 +1,3 @@
-<div class="container">
-
   <div class="card w-75 h-75 mx-auto">
 
 
@@ -26,15 +24,12 @@
     <label for="">Title</label>
     <%= form.text_field :title, class: "form-control mb-4", value: @post.title  %>
 
-    <%# <%= form.hidden_field :user_id, value: current_user.id  <%= content_tag(:option, category.name, value:category.id) %>
-    <label for="">Current Category</label>
-    <input type="text" value="<%= Category.find(@post.category_id).name %>" class="form-control" readonly> <br>
     <div class="form-group">
     <!-- Subject -->
     <label>Category</label>
     <%= form.select(:category_id,[],{}, {class: "browser-default custom-select"}) do %>
       <% Category.all.each do |category| %>
-          <option value="<%= category.id %>" class="form-control" ><%= category.name %></option>
+        <%= content_tag(:option, category.name, value: category.id, :selected => category.id == @post.category_id )%>
      <% end %>
     <% end %>
     </div>
@@ -51,5 +46,3 @@
     <% end %>
 
   </div>
-
-</div>
