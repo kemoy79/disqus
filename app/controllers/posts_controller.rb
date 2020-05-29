@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :set_user
 
   def index
-    @postss = Post.order(id: :desc)
+    @posts = Post.order(id: :desc)
   end
 
 
