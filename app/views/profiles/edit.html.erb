@@ -1,10 +1,10 @@
-<h1>Editing Profile</h1>
+<h1 class="text-center">Editing Profile</h1>
+<hr>
 
-<%= render 'form', profile: @profile %>
-
-<%
-=begin%>
- <%= link_to 'Show', @profile %> | 
-<%
-=end%>
-<%= link_to 'Back', posts_path %>
+<div class="row d-flex justify-content-center">
+  <div class="col-lg-6 text-center">
+    <div class="card p-3">
+       <%= render 'form', profile: @profile %>
+    </div>
+  </div>
+</div>

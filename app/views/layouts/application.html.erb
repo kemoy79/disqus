@@ -11,19 +11,23 @@
 
   <%# <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%# <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+ <%= stylesheet_link_tag "fontawesome/5.4.2/css/all.min",  media: "all" %> 
+
   <%
 =begin%>
- <%= stylesheet_link_tag "fontawesome/5.4.2/css/all.min" %> 
+ <style type="text/stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" ></style> 
 <%
 =end%>
-  <%= stylesheet_link_tag "bootstrap", "mdb" %>
-  <%= javascript_include_tag "jquery", "bootstrap" %>
-  <%= javascript_include_tag "mdb", "popper.min" %>
+  <%= stylesheet_link_tag "bootstrap", "mdb",  media: "all" %>
+  <%= javascript_include_tag "jquery", "bootstrap",  media: "all" %>
+  <%= javascript_include_tag "mdb", "popper.min",  media: "all" %>
 
   <style>
        
         body{
-           background: url('../assets/index.jpg') no-repeat center center fixed; 
+           /* background: url('../assets/index.jpg') no-repeat center center fixed;  */
+           background-color:#f5f5f5;
           -webkit-background-size: cover;
           -moz-background-size: cover;
           -o-background-size: cover;
