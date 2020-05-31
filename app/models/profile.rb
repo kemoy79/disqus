@@ -3,7 +3,11 @@ class Profile < ApplicationRecord
   has_one_attached :profile_pic
 
   def full_name
-    "#{first_name} #{last_name}"
+    if first_name || last_name
+      "#{first_name} #{last_name}"
+    else
+      "User1234"
+    end
   end
 
   
