@@ -99,7 +99,7 @@
               <h5 class="d-inline"> <%= post.title%></h5>
           </div>
           <article class="card-text">
-            <p><%= post.body.first(50)%>... </p>
+            <p><%= !post.body.empty? ? post.body.first(50) : nil %>... </p>
           </article>
           <div class="row d-flex justify-content-center">
             <%= link_to "View More", post, class: "btn btn-sm btn-outline-primary btn-grp" %>
